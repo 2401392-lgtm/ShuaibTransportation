@@ -1,0 +1,33 @@
+@model IReadOnlyList<Schedule>
+@{ ViewData["Title"] = "Schedules"; }
+
+<div class="page-head">
+    <h1>Schedules</h1>
+    <a class="btn" asp-action="Create">New schedule</a>
+</div>
+
+<table class="table">
+    <thead>
+    <tr><th>Route</th><th>Vehicle</th><th>Departure</th><th>Price</th><th>Seats left</th><th></th></tr>
+    </thead>
+    <tbody>
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>@s.Route.Name</td>
+            <td>@s.Vehicle.RegistrationNo</td>
+            <td>@s.DepartureTime.ToString("ddd dd MMM, HH:mm")</td>
+            <td>KSh @s.Price.ToString("N0")</td>
+            <td>@s.AvailableSeats</td>
+            <td class="actions">
+                <a asp-action="Edit" asp-route-id="@s.Id">Edit</a>
+                <form method="post" asp-action="Delete" asp-route-id="@s.Id" class="inline"
+                      onsubmit="return confirm('Delete this schedule?');">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="link danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

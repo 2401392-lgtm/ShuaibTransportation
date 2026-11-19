@@ -1,0 +1,17 @@
+@{ ViewData["Title"] = "Admin dashboard"; }
+
+<h1>Admin dashboard</h1>
+<div class="admin-grid">
+    <a class="card tile" asp-controller="AdminRoutes" asp-action="Index">
+        <h3>Routes</h3><p>Manage origins and destinations.</p>
+    </a>
+    <a class="card tile" asp-controller="AdminVehicles" asp-action="Index">
+        <h3>Vehicles</h3><p>Register vehicles and seat capacity.</p>
+    </a>
+    <a class="card tile" asp-controller="AdminSchedules" asp-action="Index">
+        <h3>Schedules</h3><p>Create and edit departures.</p>
+    </a>
+    <a class="card tile" asp-controller="AdminBookings" asp-action="Index">
+        <h3>Bookings</h3><p>Monitor all passenger bookings.</p>
+    </a>
+</div>

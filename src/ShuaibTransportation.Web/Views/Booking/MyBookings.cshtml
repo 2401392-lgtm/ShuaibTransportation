@@ -1,0 +1,49 @@
+@model IReadOnlyList<BookingDto>
+@{ ViewData["Title"] = "My bookings"; }
+
+<h1>My bookings</h1>
+
+@if (ViewData["JustBooked"] is string reference)
+{
+    <div class="alert success">Booking confirmed. Your reference is <strong>@reference</strong>.</div>
+}
+
+@if (!Model.Any())
+{
+    <p class="muted">You have no bookings yet. <a asp-controller="Home" asp-action="Index">Search trips</a>.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Reference</th><th>Route</th><th>Departure</th>
+            <th>Seats</th><th>Status</th><th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>@b.Reference</td>
+                <td>@b.RouteName</td>
+                <td>@b.DepartureTime.ToString("ddd dd MMM, HH:mm")</td>
+                <td>@b.SeatNumbers <span class="muted">(@b.SeatsBooked)</span></td>
+                <td>
+                    <span class="badge @b.Status.ToString().ToLower()">@b.Status</span>
+                </td>
+                <td>
+                    @if (b.Status == BookingStatus.Confirmed)
+                    {
+                        <form method="post" asp-action="Cancel" asp-route-id="@b.Id" class="inline"
+                              onsubmit="return confirm('Cancel this booking?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="link danger">Cancel</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

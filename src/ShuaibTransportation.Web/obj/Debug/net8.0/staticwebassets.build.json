@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "IHQLuRZjyHMXIGqHmcPPl54wpBCrH4rF+Up4EaXI0WY=",
+  "Source": "ShuaibTransportation.Web",
+  "BasePath": "_content/ShuaibTransportation.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ShuaibTransportation.Web\\wwwroot",
+      "Source": "ShuaibTransportation.Web",
+      "ContentRoot": "C:\\Users\\awoik\\Desktop\\ShuaibTransportation\\src\\ShuaibTransportation.Web\\wwwroot\\",
+      "BasePath": "_content/ShuaibTransportation.Web",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\awoik\\Desktop\\ShuaibTransportation\\src\\ShuaibTransportation.Web\\wwwroot\\css\\site.css",
+      "SourceId": "ShuaibTransportation.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\awoik\\Desktop\\ShuaibTransportation\\src\\ShuaibTransportation.Web\\wwwroot\\",
+      "BasePath": "_content/ShuaibTransportation.Web",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\awoik\\Desktop\\ShuaibTransportation\\src\\ShuaibTransportation.Web\\wwwroot\\js\\seat-map.js",
+      "SourceId": "ShuaibTransportation.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\awoik\\Desktop\\ShuaibTransportation\\src\\ShuaibTransportation.Web\\wwwroot\\",
+      "BasePath": "_content/ShuaibTransportation.Web",
+      "RelativePath": "js/seat-map.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\seat-map.js"
+    }
+  ]
+}

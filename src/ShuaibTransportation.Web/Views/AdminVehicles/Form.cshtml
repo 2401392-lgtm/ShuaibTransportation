@@ -1,0 +1,15 @@
+@model Vehicle
+@{ ViewData["Title"] = ViewData["Heading"]; }
+
+<div class="card narrow">
+    <h1>@ViewData["Heading"]</h1>
+    <form method="post" asp-action="@ViewData["Action"]" asp-route-id="@Model.Id">
+        @Html.AntiForgeryToken()
+        <label>Registration No. <input asp-for="RegistrationNo" /></label>
+        <label>Model <input asp-for="Model" /></label>
+        <label>Seat capacity <input asp-for="Capacity" type="number" min="4" max="100" /></label>
+        <label class="check"><input asp-for="IsActive" type="checkbox" /> Active</label>
+        <button type="submit" class="btn">Save</button>
+        <a asp-action="Index" class="link">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+@{ ViewData["Title"] = "Register"; }
+
+<div class="card narrow">
+    <h1>Create an account</h1>
+    <form method="post" asp-action="Register" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+        @Html.AntiForgeryToken()
+        <label>Full name <input type="text" name="fullName" required autofocus /></label>
+        <label>Email <input type="email" name="email" required /></label>
+        <label>Password (8+ characters) <input type="password" name="password" minlength="8" required /></label>
+        <button type="submit" class="btn">Register</button>
+    </form>
+    <p><a asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]">Already have an account? Sign in</a></p>
+</div>

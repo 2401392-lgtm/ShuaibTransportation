@@ -1,0 +1,40 @@
+@model IReadOnlyList<ScheduleListDto>
+@{ ViewData["Title"] = "Available trips"; }
+
+<h1>Available trips</h1>
+
+<form method="get" asp-action="Index" class="search-form compact">
+    <label>From <input type="text" name="origin" value="@ViewData["Origin"]" /></label>
+    <label>To <input type="text" name="destination" value="@ViewData["Destination"]" /></label>
+    <label>Date <input type="date" name="date" value="@ViewData["Date"]" /></label>
+    <button type="submit" class="btn">Search</button>
+</form>
+
+@if (!Model.Any())
+{
+    <p class="muted">No trips match your search. Try another date or route.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Route</th><th>Departure</th><th>Vehicle</th>
+            <th>Price</th><th>Seats left</th><th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.RouteName</td>
+                <td>@s.DepartureTime.ToString("ddd dd MMM, HH:mm")</td>
+                <td>@s.VehicleName <span class="muted">(@s.VehicleRegistration)</span></td>
+                <td>KSh @s.Price.ToString("N0")</td>
+                <td><strong>@s.AvailableSeats</strong> / @s.TotalSeats</td>
+                <td><a class="btn small" asp-action="Seats" asp-route-id="@s.Id">Select seats</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

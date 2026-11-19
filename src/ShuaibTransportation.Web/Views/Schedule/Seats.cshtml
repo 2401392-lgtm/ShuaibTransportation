@@ -1,0 +1,48 @@
+@model SeatMapDto
+@{ ViewData["Title"] = "Select seats"; }
+
+<p><a asp-action="Index">&larr; Back to trips</a></p>
+<h1>@Model.RouteName</h1>
+<p class="muted">
+    @Model.DepartureTime.ToString("dddd dd MMM yyyy, HH:mm") •
+    @Model.VehicleName (@Model.VehicleRegistration) •
+    KSh @Model.Price.ToString("N0") per seat
+</p>
+
+<div class="seat-layout">
+    <div class="card">
+        <div id="seat-map" class="seat-grid"
+             data-schedule-id="@Model.ScheduleId"
+             data-total-seats="@Model.TotalSeats"
+             data-booked-seats="@string.Join(",", Model.BookedSeatNumbers)">
+        </div>
+        <p class="legend">
+            <span class="seat available"></span> Available
+            <span class="seat selected"></span> Selected
+            <span class="seat booked"></span> Taken
+        </p>
+    </div>
+
+    <aside class="card summary">
+        <h3>Your booking</h3>
+        <p>Seats available: <strong>@Model.AvailableSeats</strong></p>
+        <p>Seats selected: <strong id="selected-count">0</strong></p>
+
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            @Html.AntiForgeryToken()
+            <button id="confirm-booking" class="btn" disabled>Confirm booking</button>
+        }
+        else
+        {
+            <p><a asp-controller="Account" asp-action="Login"
+                  asp-route-returnUrl="@Context.Request.Path">Sign in</a> to complete your booking.</p>
+        }
+
+        <p id="booking-message" class="alert"></p>
+    </aside>
+</div>
+
+@section Scripts {
+    <script src="~/js/seat-map.js"></script>
+}

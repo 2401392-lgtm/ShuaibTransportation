@@ -1,0 +1,15 @@
+@model Route
+@{ ViewData["Title"] = ViewData["Heading"]; }
+
+<div class="card narrow">
+    <h1>@ViewData["Heading"]</h1>
+    <form method="post" asp-action="@ViewData["Action"]" asp-route-id="@Model.Id">
+        @Html.AntiForgeryToken()
+        <label>From <input asp-for="Origin" /></label>
+        <label>To <input asp-for="Destination" /></label>
+        <label>Distance (km) <input asp-for="DistanceKm" type="number" min="1" /></label>
+        <label class="check"><input asp-for="IsActive" type="checkbox" /> Active</label>
+        <button type="submit" class="btn">Save</button>
+        <a asp-action="Index" class="link">Cancel</a>
+    </form>
+</div>

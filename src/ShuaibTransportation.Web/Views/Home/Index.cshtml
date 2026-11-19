@@ -1,0 +1,49 @@
+@model IReadOnlyList<Route>
+@{ ViewData["Title"] = "Search trips"; }
+
+<section class="hero">
+    <h1>Book your next journey</h1>
+    <p>Live seat availability across all Shuaib Transportation routes.</p>
+
+    <form method="get" asp-controller="Schedule" asp-action="Index" class="search-form">
+        <label>From
+            <input type="text" name="origin" placeholder="e.g. Nairobi" list="origins" />
+        </label>
+        <label>To
+            <input type="text" name="destination" placeholder="e.g. Mombasa" list="destinations" />
+        </label>
+        <label>Date
+            <input type="date" name="date" value="@DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")" />
+        </label>
+        <button type="submit" class="btn">Search</button>
+    </form>
+
+    <datalist id="origins">
+        @foreach (var r in Model.Select(r => r.Origin).Distinct()) { <option value="@r"></option> }
+    </datalist>
+    <datalist id="destinations">
+        @foreach (var r in Model.Select(r => r.Destination).Distinct()) { <option value="@r"></option> }
+    </datalist>
+</section>
+
+<section class="card">
+    <h2>Available routes</h2>
+    <table class="table">
+        <thead><tr><th>From</th><th>To</th><th>Distance</th><th></th></tr></thead>
+        <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Origin</td>
+                <td>@r.Destination</td>
+                <td>@r.DistanceKm km</td>
+                <td>
+                    <a class="btn small"
+                       asp-controller="Schedule" asp-action="Index"
+                       asp-route-origin="@r.Origin" asp-route-destination="@r.Destination">View trips</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>

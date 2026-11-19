@@ -1,0 +1,29 @@
+@model IReadOnlyList<BookingDto>
+@{ ViewData["Title"] = "All bookings"; }
+
+<h1>All bookings</h1>
+<p class="muted">@Model.Count booking(s) recorded.</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Reference</th><th>Customer</th><th>Route</th><th>Departure</th>
+        <th>Vehicle</th><th>Seats</th><th>Status</th><th>Booked at</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var b in Model)
+    {
+        <tr>
+            <td>@b.Reference</td>
+            <td>@b.CustomerName<br /><span class="muted small">@b.CustomerEmail</span></td>
+            <td>@b.RouteName</td>
+            <td>@b.DepartureTime.ToString("dd MMM, HH:mm")</td>
+            <td>@b.VehicleName</td>
+            <td>@b.SeatNumbers</td>
+            <td><span class="badge @b.Status.ToString().ToLower()">@b.Status</span></td>
+            <td>@b.CreatedAt.ToLocalTime().ToString("dd MMM, HH:mm")</td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,28 @@
+@model IReadOnlyList<Vehicle>
+@{ ViewData["Title"] = "Vehicles"; }
+
+<div class="page-head">
+    <h1>Vehicles</h1>
+    <a class="btn" asp-action="Create">New vehicle</a>
+</div>
+
+<table class="table">
+    <thead><tr><th>Registration</th><th>Model</th><th>Capacity</th><th>Active</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var v in Model)
+    {
+        <tr>
+            <td>@v.RegistrationNo</td><td>@v.Model</td><td>@v.Capacity</td>
+            <td>@(v.IsActive ? "Yes" : "No")</td>
+            <td class="actions">
+                <a asp-action="Edit" asp-route-id="@v.Id">Edit</a>
+                <form method="post" asp-action="Delete" asp-route-id="@v.Id" class="inline"
+                      onsubmit="return confirm('Delete this vehicle?');">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="link danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
